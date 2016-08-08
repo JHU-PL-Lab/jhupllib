@@ -21,3 +21,8 @@ The following steps should be sufficient to package `jhupllib` for distribution.
 
   7. Follow the Travis CI builds on GitHub for the resulting pull request into
      the OPAM repository.
+
+  8. Once the Travis CI is successful, tag the released commit.
+
+  9. Modify the `_oasis` file to contain a modified version (e.g. `0.1+dev`) to
+     distinguish the released version from future development.
