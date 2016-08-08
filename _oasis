@@ -4,6 +4,7 @@ Synopsis: A library of tools and utilities for JHU PL lab projects.
 Authors: JHU PL Lab <pl.cs@jhu.edu>
 License: Apache
 
+Maintainers: JHU PL Lab <pl.cs@jhu.edu>
 Description: A library of tools and utilities for JHU PL lab projects.
 Homepage: http://www.big-bang-lang.org/
 
@@ -18,6 +19,12 @@ BuildDepends: threads
 # (e.g. reposition the _build directory via a symlink) on build.
 PreBuildCommand: ./.execute_if_exists ./.local_prebuild
 PreCleanCommand: ./.execute_if_exists ./.local_preclean
+
+SourceRepository head
+  Type: git
+  Location: https://github.com/JHU-PL-Lab/jhu-pl-lib.git
+  Browser: https://github.com/JHU-PL-Lab/jhu-pl-lib
+  Branch: master
 
 Library "jhupllib"
   Path: src/jhupllib
