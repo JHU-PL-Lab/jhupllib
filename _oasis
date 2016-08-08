@@ -1,0 +1,53 @@
+Name: jhupllib
+Version: 0.1
+Synopsis: A library of tools and utilities for JHU PL lab projects.
+Authors: JHU PL Lab <pl.cs@jhu.edu>
+License: Apache
+
+Description: A library of tools and utilities for JHU PL lab projects.
+Homepage: http://www.big-bang-lang.org/
+
+OASISFormat: 0.4
+BuildTools: ocamlbuild
+Plugins: META (0.4), DevFiles (0.4)
+AlphaFeatures: ocamlbuild_more_args
+XOCamlbuildExtraArgs: -use-menhir -use-ocamlfind
+BuildDepends: threads
+
+# The following allows individual developers to customize their environments
+# (e.g. reposition the _build directory via a symlink) on build.
+PreBuildCommand: ./.execute_if_exists ./.local_prebuild
+PreCleanCommand: ./.execute_if_exists ./.local_preclean
+
+Library "jhupllib"
+  Path: src/jhupllib
+  Modules:
+    Jhupllib,
+    Jhupllib_logger_utils,
+    Jhupllib_monad_utils,
+    Jhupllib_multimap,
+    Jhupllib_multimap_pp,
+    Jhupllib_multimap_to_yojson,
+    Jhupllib_nondeterminism,
+    Jhupllib_pp_utils,
+    Jhupllib_string_utils,
+    Jhupllib_utils,
+    Jhupllib_yojson_utils
+  BuildDepends:
+    batteries,
+    monadlib,
+    ocaml-monadic,
+    ppx_deriving.std,
+    yojson
+
+Executable "test"
+  Path: test/
+  MainIs: test.ml
+  CompiledObject: native
+  BuildDepends:
+    batteries,
+    jhupllib,
+    oUnit
+
+Test test
+  Command: $test
