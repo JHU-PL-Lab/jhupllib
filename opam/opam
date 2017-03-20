@@ -14,7 +14,7 @@ build: [
 ]
 install: ["ocaml" "setup.ml" "-install"]
 remove: [
-  ["ocaml" "%{etc}%/jhupllib/_oasis_remove_.ml" "%{etc}%/jhupllib"]
+  ["ocaml" "%{etc}%/jhupllib/setup.ml" "-C" "%{etc}%/jhupllib" "-uninstall"]
 ]
 build-test: [
   ["oasis" "setup"]
@@ -26,11 +26,11 @@ depends: [
   "base-threads"
   "batteries"
   "monadlib"
-  "oasis" {build & >= "0.4"}
+  "oasis" {build & >= "0.4.7"}
   "ocaml-monadic"
   "ocamlbuild" {build}
   "ocamlfind" {build}
   "ounit" {build}
-  "ppx_deriving"
+  "ppx_deriving" {>= "2.0"}
   "yojson"
 ]

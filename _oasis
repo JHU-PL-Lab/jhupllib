@@ -44,7 +44,7 @@ Library "jhupllib"
     batteries,
     monadlib,
     ocaml-monadic,
-    ppx_deriving.std,
+    ppx_deriving.std (>= 2.0),
     yojson
 
 Executable "test"
