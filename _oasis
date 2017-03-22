@@ -39,6 +39,7 @@ Library "jhupllib"
     Jhupllib_pp_utils,
     Jhupllib_string_utils,
     Jhupllib_utils,
+    Jhupllib_witness_protection,
     Jhupllib_yojson_utils
   BuildDepends:
     batteries,

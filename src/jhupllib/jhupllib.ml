@@ -7,4 +7,5 @@ module Nondeterminism = Jhupllib_nondeterminism;;
 module Pp_utils = Jhupllib_pp_utils;;
 module String_utils = Jhupllib_string_utils;;
 module Utils = Jhupllib_utils;;
+module Witness_protection = Jhupllib_witness_protection;;
 module Yojson_utils = Jhupllib_yojson_utils;;

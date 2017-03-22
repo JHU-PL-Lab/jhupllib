@@ -3,7 +3,8 @@ open Jhupllib;;
 open OUnit2
 
 let all_tests =
-  [ Test_utils.tests
+  [ Test_utils.tests;
+    Test_witnesses.tests;
   ];;
 
 let () =
