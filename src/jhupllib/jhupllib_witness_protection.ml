@@ -118,3 +118,78 @@ struct
     Witness_map.find w !(r.witness_to_value)
   ;;
 end;;
+
+(** The type of a pretty-printing utility module for witness registries. *)
+module type Pp_utils =
+sig
+  (** The type of registry. *)
+  type t;;
+
+  (** The type of element. *)
+  type elt;;
+
+  (** The type of witness. *)
+  type witness;;
+
+  (** A type alias for pairings between a registry and its witnesses. *)
+  type escorted_witness = t * witness;;
+
+  (** A pretty printer for escorted witnesses (given a pretty printer for their
+      values. *)
+  val pp_escorted_witness :
+    elt Jhupllib_pp_utils.pretty_printer ->
+    escorted_witness Jhupllib_pp_utils.pretty_printer
+end;;
+
+(** A functor to produce a pretty-printing utility module. *)
+module Make_pp(R : Registry)
+  : Pp_utils with type t = R.t
+              and type elt = R.elt
+              and type witness = R.witness
+=
+struct
+  type t = R.t;;
+  type elt = R.elt;;
+  type witness = R.witness;;
+  type escorted_witness = t * witness;;
+  let pp_escorted_witness pp_elt fmt (registry,witness) =
+    pp_elt fmt @@ R.element_of registry witness
+  ;;
+end;;
+
+(** The type of a to-yojson utility module for witness registries. *)
+module type To_yojson_utils =
+sig
+  (** The type of registry. *)
+  type t;;
+
+  (** The type of element. *)
+  type elt;;
+
+  (** The type of witness. *)
+  type witness;;
+
+  (** A type alias for pairings between a registry and its witnesses. *)
+  type escorted_witness = t * witness;;
+
+  (** A pretty printer for escorted witnesses (given a pretty printer for their
+      values. *)
+  val escorted_witness_to_yojson :
+    (elt -> Yojson.Safe.json) -> (escorted_witness -> Yojson.Safe.json)
+end;;
+
+(** A functor to produce a pretty-printing utility module. *)
+module Make_to_yojson(R : Registry)
+  : To_yojson_utils with type t = R.t
+                     and type elt = R.elt
+                     and type witness = R.witness
+=
+struct
+  type t = R.t;;
+  type elt = R.elt;;
+  type witness = R.witness;;
+  type escorted_witness = t * witness;;
+  let escorted_witness_to_yojson elt_to_yojson (registry,witness) =
+    elt_to_yojson @@ R.element_of registry witness
+  ;;
+end;;
