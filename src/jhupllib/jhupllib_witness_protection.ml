@@ -119,77 +119,86 @@ struct
   ;;
 end;;
 
+(** The type of a registry with an escort.  Escorts pair the witnesses with
+    their registries to make operations such as pretty-printing easier.  This
+    module only defines escorts and their basic comparison operations.  More
+    operations can be added by including utils modules produced by the other
+    functors in this module. *)
+module type Escorted_registry =
+sig
+  include Registry;;
+  type escorted_witness
+  val witness_of_escorted_witness : escorted_witness -> witness
+  val registry_of_escorted_witness : escorted_witness -> t
+  val element_of_escorted_witness : escorted_witness -> elt
+  val escorted_witness_of : t -> elt -> escorted_witness
+  val share_escort : escorted_witness -> elt -> escorted_witness
+  val equal_escorted_witness : escorted_witness -> escorted_witness -> bool
+  val compare_escorted_witness : escorted_witness -> escorted_witness -> int
+end;;
+
+(** A functor to make registries with escorts. *)
+module Make_escorted(S : Spec) : Escorted_registry with type elt = S.t =
+struct
+  module Escorted_registry = Make(S);;
+  include Escorted_registry;;
+  type escorted_witness = t * witness;;
+  let witness_of_escorted_witness (_,w) = w;;
+  let registry_of_escorted_witness (r,_) = r;;
+  let element_of_escorted_witness (r,w) = element_of r w;;
+  let escorted_witness_of r e = (r, witness_of r e);;
+  let share_escort (r,_) e = (r, witness_of r e);;
+  let equal_escorted_witness (_,w1) (_,w2) =
+    equal_witness w1 w2
+  ;;
+  let compare_escorted_witness (_,w1) (_,w2) =
+    compare_witness w1 w2
+  ;;
+end;;
+
 (** The type of a pretty-printing utility module for witness registries. *)
 module type Pp_utils =
 sig
-  (** The type of registry. *)
-  type t;;
-
-  (** The type of element. *)
-  type elt;;
-
-  (** The type of witness. *)
-  type witness;;
-
-  (** A type alias for pairings between a registry and its witnesses. *)
-  type escorted_witness = t * witness;;
+  type escorted_witness
 
   (** A pretty printer for escorted witnesses (given a pretty printer for their
       values. *)
-  val pp_escorted_witness :
-    elt Jhupllib_pp_utils.pretty_printer ->
-    escorted_witness Jhupllib_pp_utils.pretty_printer
+  val pp_escorted_witness : escorted_witness Jhupllib_pp_utils.pretty_printer
 end;;
 
 (** A functor to produce a pretty-printing utility module. *)
-module Make_pp(R : Registry)
-  : Pp_utils with type t = R.t
-              and type elt = R.elt
-              and type witness = R.witness
-=
+module Make_pp
+    (R : Escorted_registry)
+    (P : Jhupllib_pp_utils.Pp with type t = R.elt)
+  : Pp_utils with type escorted_witness := R.escorted_witness =
 struct
-  type t = R.t;;
-  type elt = R.elt;;
-  type witness = R.witness;;
-  type escorted_witness = t * witness;;
-  let pp_escorted_witness pp_elt fmt (registry,witness) =
-    pp_elt fmt @@ R.element_of registry witness
+  let pp_escorted_witness fmt ew =
+    P.pp fmt @@ R.element_of
+      (R.registry_of_escorted_witness ew)
+      (R.witness_of_escorted_witness ew)
   ;;
 end;;
 
 (** The type of a to-yojson utility module for witness registries. *)
 module type To_yojson_utils =
 sig
-  (** The type of registry. *)
-  type t;;
-
-  (** The type of element. *)
-  type elt;;
-
-  (** The type of witness. *)
-  type witness;;
-
-  (** A type alias for pairings between a registry and its witnesses. *)
-  type escorted_witness = t * witness;;
+  type escorted_witness
 
   (** A pretty printer for escorted witnesses (given a pretty printer for their
       values. *)
-  val escorted_witness_to_yojson :
-    (elt -> Yojson.Safe.json) -> (escorted_witness -> Yojson.Safe.json)
+  val escorted_witness_to_yojson : escorted_witness -> Yojson.Safe.json
 end;;
 
 (** A functor to produce a pretty-printing utility module. *)
-module Make_to_yojson(R : Registry)
-  : To_yojson_utils with type t = R.t
-                     and type elt = R.elt
-                     and type witness = R.witness
+module Make_to_yojson
+    (R : Escorted_registry)
+    (Y : Jhupllib_yojson_utils.To_yojson_type with type t = R.elt)
+  : To_yojson_utils with type escorted_witness := R.escorted_witness
 =
 struct
-  type t = R.t;;
-  type elt = R.elt;;
-  type witness = R.witness;;
-  type escorted_witness = t * witness;;
-  let escorted_witness_to_yojson elt_to_yojson (registry,witness) =
-    elt_to_yojson @@ R.element_of registry witness
+  let escorted_witness_to_yojson ew =
+    Y.to_yojson @@ R.element_of
+      (R.registry_of_escorted_witness ew)
+      (R.witness_of_escorted_witness ew)
   ;;
 end;;

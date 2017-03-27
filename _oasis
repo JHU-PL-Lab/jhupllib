@@ -55,7 +55,9 @@ Executable "test"
   BuildDepends:
     batteries,
     jhupllib,
-    oUnit
+    oUnit,
+    ppx_deriving.std (>= 2.0),
+    ppx_deriving_yojson
 
 Test test
   Command: $test

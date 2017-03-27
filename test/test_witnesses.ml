@@ -1,21 +1,35 @@
 open Batteries;;
 open Jhupllib;;
 open OUnit2;;
+open Yojson.Safe;;
 
 type expr =
   | Plus of expr * expr
   | Minus of expr * expr
   | Negate of expr
   | Integer of int
-[@@deriving eq, ord, show]
+[@@deriving eq, ord, show, to_yojson]
 ;;
 
+module Expr = struct
+  type t = expr
+  let compare = compare_expr
+  let pp = pp_expr
+  let to_yojson = expr_to_yojson;;
+end;;
+
 module Expr_registry =
-  Witness_protection.Make(
-  struct
-    type t = expr
-    let compare = compare_expr
-  end);;
+struct
+  module R = Witness_protection.Make_escorted(Expr);;
+  include R;;
+  include Witness_protection.Make_pp(R)(Expr);;
+  include Witness_protection.Make_to_yojson(R)(Expr);;
+end;;
+
+type functor_test_type =
+  | Functor_test_constructor of Expr_registry.escorted_witness
+[@@deriving eq, ord, show, to_yojson]
+;;
 
 let make_tests () =
   Random.init 4; (* arbitrary seed *)
