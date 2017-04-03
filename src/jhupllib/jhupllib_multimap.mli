@@ -19,6 +19,8 @@ sig
 
   val add : key -> value -> t -> t
 
+  val add_all : key -> value Enum.t -> t -> t
+
   val find : key -> t -> value Enum.t
 
   val remove : key -> value -> t -> t

@@ -19,6 +19,8 @@ sig
 
   val add : key -> value -> t -> t
 
+  val add_all : key -> value Enum.t -> t -> t
+
   val find : key -> t -> value Enum.t
 
   val remove : key -> value -> t -> t
@@ -75,6 +77,12 @@ struct
   let add k v m =
     let old_set = find_internal k m in
     let new_set = S.add v old_set in
+    M.add k new_set m
+  ;;
+
+  let add_all k vs m =
+    let old_set = find_internal k m in
+    let new_set = Enum.fold (flip S.add) old_set vs in
     M.add k new_set m
   ;;
 
