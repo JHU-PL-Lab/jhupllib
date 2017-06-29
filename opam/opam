@@ -1,6 +1,6 @@
 opam-version: "1.2"
 name: "jhupllib"
-version: "0.1+dev"
+version: "0.1.1"
 maintainer: "JHU PL Lab <pl.cs@jhu.edu>"
 authors: [ "JHU PL Lab <pl.cs@jhu.edu>" ]
 license: "Apache"
@@ -32,5 +32,6 @@ depends: [
   "ocamlfind" {build}
   "ounit" {build}
   "ppx_deriving" {>= "2.0"}
+  "ppx_deriving_yojson"
   "yojson"
 ]

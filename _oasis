@@ -1,5 +1,5 @@
 Name: jhupllib
-Version: 0.1+dev
+Version: 0.1.1
 Synopsis: A library of tools and utilities for JHU PL lab projects.
 Authors: JHU PL Lab <pl.cs@jhu.edu>
 License: Apache
@@ -48,6 +48,7 @@ Library "jhupllib"
     monadlib,
     ocaml-monadic,
     ppx_deriving.std (>= 2.0),
+    ppx_deriving_yojson,
     yojson
 
 Executable "test"
