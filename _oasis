@@ -38,6 +38,7 @@ Library "jhupllib"
     Jhupllib_nondeterminism,
     Jhupllib_pp_utils,
     Jhupllib_string_utils,
+    Jhupllib_uids,
     Jhupllib_utils,
     Jhupllib_witness_protection,
     Jhupllib_yojson_utils
