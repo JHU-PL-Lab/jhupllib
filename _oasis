@@ -30,6 +30,7 @@ Library "jhupllib"
   Path: src/jhupllib
   Modules:
     Jhupllib,
+    Jhupllib_eager_nondeterminism,
     Jhupllib_logger_utils,
     Jhupllib_monad_utils,
     Jhupllib_multimap,

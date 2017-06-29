@@ -1,3 +1,4 @@
+module Eager_nondeterminism = Jhupllib_eager_nondeterminism;;
 module Logger_utils = Jhupllib_logger_utils;;
 module Monad_utils = Jhupllib_monad_utils;;
 module Multimap = Jhupllib_multimap;;
