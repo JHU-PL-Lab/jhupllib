@@ -2,15 +2,26 @@
 
 open Jhupllib_pp_utils;;
 
+(** Defines the type of a module supporting UID generation. *)
 module type Uid_module =
 sig
+  (** The type of UIDs in this module. *)
   type t
-  val fresh : unit -> t
+  (** The type of UID generation contexts in this module. *)
+  type context
+  (** Creates a fresh context from which to generate UIDs. *)
+  val new_context : unit -> context
+  (** Creates a fresh UID.  If a context is provided, it is used; otherwise, the
+      global context is used. *)
+  val fresh : ?context:context -> unit -> t
+  (** Determines if two UIDs are equal. *)
   val equal : t -> t -> bool
+  (** Compares two UIDs. *)
   val compare : t -> t -> int
+  (** Prints a UID. *)
   val pp : t pretty_printer
+  (** Converts a UID to a string. *)
   val show : t -> string
-  val to_int : t -> int
 end;;
 
 module Make () : Uid_module;;
