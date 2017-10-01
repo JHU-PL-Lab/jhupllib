@@ -9,10 +9,14 @@ sig
   type t
   (** The type of UID generation contexts in this module. *)
   type context
-  (** Creates a fresh context from which to generate UIDs. *)
+  (** The default context with which UIDs are created. *)
+  val default_context : context
+  (** Creates a fresh context from which to generate UIDs.  The UIDs in this
+      context are not distinguishable from the UIDs from any other context
+      from the same module. *)
   val new_context : unit -> context
   (** Creates a fresh UID.  If a context is provided, it is used; otherwise, the
-      global context is used. *)
+      default context is used. *)
   val fresh : ?context:context -> unit -> t
   (** Determines if two UIDs are equal. *)
   val equal : t -> t -> bool
