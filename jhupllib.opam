@@ -4,24 +4,11 @@ version: "0.1.1+dev"
 maintainer: "JHU PL Lab <pl.cs@jhu.edu>"
 authors: [ "JHU PL Lab <pl.cs@jhu.edu>" ]
 license: "Apache"
-homepage: "http://www.big-bang-lang.org/"
+homepage: "http://pl.cs.jhu.edu/"
 dev-repo: "https://github.com/JHU-PL-Lab/jhu-pl-lib.git"
 bug-reports: "https://github.com/JHU-PL-Lab/jhu-pl-lib/issues"
-build: [
-  ["oasis" "setup"]
-  ["ocaml" "setup.ml" "-configure" "--prefix" prefix]
-  ["ocaml" "setup.ml" "-build"]
-]
-install: ["ocaml" "setup.ml" "-install"]
-remove: [
-  ["ocaml" "%{etc}%/jhupllib/setup.ml" "-C" "%{etc}%/jhupllib" "-uninstall"]
-]
-build-test: [
-  ["oasis" "setup"]
-  ["ocaml" "setup.ml" "-configure" "--enable-tests"]
-  ["ocaml" "setup.ml" "-build"]
-  ["ocaml" "setup.ml" "-test"]
-]
+build: [ "jbuilder" "build" "-p" name "-j" jobs ]
+build-test: [ "jbuilder" "runtest" "-p" name "-j" jobs ]
 depends: [
   "base-threads"
   "batteries"
