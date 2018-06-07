@@ -18,3 +18,7 @@
 
 # Custom build configuration files
 /.local_*
+
+# Dune (jbuilder) generates a number of files
+.merlin
+*.install

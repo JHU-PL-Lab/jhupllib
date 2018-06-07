@@ -1,5 +1,3 @@
-open Batteries;;
-open Jhupllib;;
 open OUnit2
 
 let all_tests =

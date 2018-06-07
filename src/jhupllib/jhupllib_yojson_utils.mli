@@ -5,6 +5,9 @@
 open Batteries;;
 open Yojson.Safe;;
 
+(** Provides a serialization mechanism for a list data structure. *)
+val list_to_yojson : ('t -> json) -> 't list -> json
+
 (** Provides a serialization mechanism for a set data structure. *)
 val set_to_yojson : ('t -> json) -> ('s -> 't Enum.t) -> 's -> json
 

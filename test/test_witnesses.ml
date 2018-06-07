@@ -1,7 +1,6 @@
 open Batteries;;
 open Jhupllib;;
 open OUnit2;;
-open Yojson.Safe;;
 
 type expr =
   | Plus of expr * expr
