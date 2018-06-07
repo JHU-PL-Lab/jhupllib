@@ -8,20 +8,12 @@ This repository contains a standard library of sorts for JHU PL Lab projects (al
 
 ## Building
 
-This project uses [OASIS](http://oasis.forge.ocamlcore.org/) as a build tool.  After cloning this repository, it should be sufficient to perform the following steps:
+This project uses [Dune](https://github.com/ocaml/dune) as a build tool.  After cloning this repository, it should be sufficient to perform the following steps:
 
   1. Install dependencies.
 
-    `opam install oasis batteries monadlib ocaml-monadic ppx_deriving yojson ppx_deriving_yojson`
-  
-  2. Create a dynamic OASIS setup file.
-  
-    `oasis setup -setup-update dynamic`
+    `opam install jbuilder batteries monadlib ocaml-monadic ppx_deriving yojson ppx_deriving_yojson`
 
-  3. Configure the project.
-  
-    `./configure --enable-tests`
-  
-  4. Build and run tests.
-  
-    `make test`
+  2. Build the project.
+
+     `make && make test`
