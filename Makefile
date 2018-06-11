@@ -4,7 +4,7 @@ all:
 	jbuilder build --dev
 
 repl:
-	jbuilder utop src -- -require ocaml-monadic
+	jbuilder utop src -- -require jhupllib
 
 test:
 	jbuilder runtest -f --dev

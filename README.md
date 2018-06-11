@@ -16,4 +16,4 @@ This project uses [Dune](https://github.com/ocaml/dune) as a build tool.  After 
 
   2. Build the project.
 
-     `make && make test`
+    `make && make test`
