@@ -7,6 +7,7 @@ type 'a pretty_printer = (formatter -> 'a -> unit);;
 
 let pp_concat_sep sep pp_item formatter items =
   pp_open_hvbox formatter 2;
+  pp_print_cut formatter ();
   begin
     match Enum.get items with
     | None -> ()
@@ -21,11 +22,15 @@ let pp_concat_sep sep pp_item formatter items =
         )
   end;
   pp_close_box formatter ();
+  pp_print_cut formatter ();
 ;;
 
 let pp_concat_sep_delim start stop sep pp_item formatter items =
-  Format.fprintf formatter "@[%s%a%s@]"
-    start (pp_concat_sep sep pp_item) items stop
+  pp_open_box formatter 0;
+  pp_print_string formatter start;
+  pp_concat_sep sep pp_item formatter items;
+  pp_print_string formatter stop;
+  pp_close_box formatter ();
 ;;
 
 let pp_tuple pp_a pp_b formatter (a,b) =
@@ -51,7 +56,7 @@ let pp_list pp_item formatter lst =
 
 let pp_map pp_k pp_v enum formatter dict =
   let pp_kv_pair formatter (k,v) =
-    Format.fprintf formatter "%a -> %a" pp_k k pp_v v
+    Format.fprintf formatter "@[<hv 2>%a ->@ %a@]" pp_k k pp_v v
   in
   pp_concat_sep_delim "{" "}" "," pp_kv_pair formatter @@ enum dict
 ;;
