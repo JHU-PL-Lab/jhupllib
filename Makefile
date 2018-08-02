@@ -7,7 +7,7 @@ repl:
 	dune utop src -- -require jhupllib
 
 test:
-	dune runtest -f --dev
+	dune runtest -f
 
 clean:
 	dune clean
