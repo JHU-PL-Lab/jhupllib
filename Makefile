@@ -1,14 +1,14 @@
 .PHONY: all clean repl test
 
 all:
-	jbuilder build --dev
+	dune build
 
 repl:
-	jbuilder utop src -- -require jhupllib
+	dune utop src -- -require jhupllib
 
 test:
-	jbuilder runtest -f --dev
+	dune runtest -f --dev
 
 clean:
-	jbuilder clean
+	dune clean
 
