@@ -51,7 +51,7 @@ let pp_quintuple pp_a pp_b pp_c pp_d pp_e formatter (a,b,c,d,e) =
 ;;
 
 let pp_list pp_item formatter lst =
-  pp_concat_sep_delim "[" "]" "," pp_item formatter @@ List.enum lst
+  pp_concat_sep_delim "[" "]" ";" pp_item formatter @@ List.enum lst
 ;;
 
 let pp_map pp_k pp_v enum formatter dict =
