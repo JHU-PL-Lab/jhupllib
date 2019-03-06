@@ -7,12 +7,12 @@ license: "Apache"
 homepage: "http://pl.cs.jhu.edu/"
 dev-repo: "https://github.com/JHU-PL-Lab/jhu-pl-lib.git"
 bug-reports: "https://github.com/JHU-PL-Lab/jhu-pl-lib/issues"
-build: [ "jbuilder" "build" "-p" name "-j" jobs ]
-build-test: [ "jbuilder" "runtest" "-p" name "-j" jobs ]
+build: [ "dune" "build" "-p" name "-j" jobs ]
+build-test: [ "dune" "runtest" "-p" name "-j" jobs ]
 depends: [
   "base-threads"
   "batteries"
-  "jbuilder" {build & >= "1.0+beta17"}
+  "dune" {build & >= "1.0+beta17"}
   "monadlib"
   "ocaml-monadic"
   "ocamlbuild" {build}
