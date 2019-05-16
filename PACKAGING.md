@@ -10,7 +10,7 @@ The following steps should be sufficient to package `jhupllib` for distribution.
 
   4. Ensure that all changes have been committed and pushed and establish the hash `HASH` of the commit to be published.
 
-  5. Run `opam publish http://github.com/zepalmer/jhupllib/archive/HASH.zip` to create the PR to the OPAM package repository.
+  5. Run `opam publish http://github.com/JHU-PL-Lab/jhupllib/archive/HASH.zip` to create the PR to the OPAM package repository.
 
   6. Follow the CI builds on GitHub for the resulting pull request into the OPAM repository.
 
