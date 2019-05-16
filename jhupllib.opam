@@ -1,21 +1,23 @@
-opam-version: "1.2"
+opam-version: "2.0"
 name: "jhupllib"
-version: "0.2"
+version: "0.2.1"
 maintainer: "JHU PL Lab <pl.cs@jhu.edu>"
 authors: [ "JHU PL Lab <pl.cs@jhu.edu>" ]
+synopsis: "A collection of OCaml utilities used by the JHU PL lab."
 license: "Apache"
 homepage: "http://pl.cs.jhu.edu/"
 dev-repo: "https://github.com/JHU-PL-Lab/jhu-pl-lib.git"
 bug-reports: "https://github.com/JHU-PL-Lab/jhu-pl-lib/issues"
 build: [ "dune" "build" "-p" name "-j" jobs ]
-build-test: [ "dune" "runtest" "-p" name "-j" jobs ]
-available: [ ocaml-version >= "4.04" ]
+run-test: [ "dune" "runtest" "-p" name "-j" jobs ]
+ocaml-version: >= "4.04"
 depends: [
+  "ocaml" {>= "4.04.0"}
   "base-threads"
   "batteries"
   "dune" {build & >= "1.0+beta17"}
   "monadlib"
-  "ocaml-monadic"
+  "ocaml-monadic" {>= "0.4.1"}
   "ocamlbuild" {build}
   "ocamlfind" {build}
   "ounit" {build}
