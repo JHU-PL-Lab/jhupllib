@@ -3,7 +3,7 @@
 *)
 
 open Batteries;;
-open Yojson.Safe;;
+type json = Yojson.Safe.t;;
 
 let list_to_yojson element_to_yojson lst =
   `List (List.map element_to_yojson lst)
@@ -33,18 +33,18 @@ let map_to_yojson key_to_yojson value_to_yojson enumerator map =
       )
     ; ( "mappings"
       , `List
-        (
-          map
-          |> enumerator
-          |> Enum.map
-            (fun (k,v) ->
-               `Assoc
-                 [ ( "key" , key_to_yojson k )
-                 ; ( "value", value_to_yojson v )
-                 ]
-            )
-          |> List.of_enum
-        )
+          (
+            map
+            |> enumerator
+            |> Enum.map
+              (fun (k,v) ->
+                 `Assoc
+                   [ ( "key" , key_to_yojson k )
+                   ; ( "value", value_to_yojson v )
+                   ]
+              )
+            |> List.of_enum
+          )
       )
     ]
 ;;

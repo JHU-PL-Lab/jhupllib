@@ -3,7 +3,7 @@
 *)
 
 open Batteries;;
-open Yojson.Safe;;
+type json = Yojson.Safe.t;;
 
 (** Provides a serialization mechanism for a list data structure. *)
 val list_to_yojson : ('t -> json) -> 't list -> json

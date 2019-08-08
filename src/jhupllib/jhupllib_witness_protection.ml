@@ -186,7 +186,7 @@ sig
 
   (** A pretty printer for escorted witnesses (given a pretty printer for their
       values. *)
-  val escorted_witness_to_yojson : escorted_witness -> Yojson.Safe.json
+  val escorted_witness_to_yojson : escorted_witness -> Yojson.Safe.t
 end;;
 
 (** A functor to produce a pretty-printing utility module. *)
