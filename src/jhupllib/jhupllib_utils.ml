@@ -44,7 +44,7 @@ let pairwise_enum_fold f e =
     let e' = Enum.clone e in
     let _ = Enum.get_exn e' in
     if Enum.is_empty e' then Enum.empty () else
-      Enum.combine (e,e') |> Enum.map (uncurry f)
+      Enum.combine e e' |> Enum.map (uncurry f)
 ;;
 
 let set_file_contents filename s =

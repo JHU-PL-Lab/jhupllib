@@ -3,7 +3,6 @@
 *)
 
 open Batteries;;
-open Yojson.Safe;;
 
 let list_to_yojson element_to_yojson lst =
   `List (List.map element_to_yojson lst)
