@@ -4,8 +4,14 @@ version: "0.2.2"
 maintainer: "JHU PL Lab <pl.cs@jhu.edu>"
 authors: [ "JHU PL Lab <pl.cs@jhu.edu>" ]
 synopsis: "A collection of OCaml utilities used by the JHU PL lab"
+description: """
+A collection of OCaml utilities used by the JHU PL lab.  These are miscellaneous
+utilities which did not appear readily in standard libraries when they were
+written.
+"""
 license: "Apache"
 homepage: "http://pl.cs.jhu.edu/"
+doc: "https://github.com/JHU-PL-Lab/jhu-pl-lib/"
 dev-repo: "git+https://github.com/JHU-PL-Lab/jhu-pl-lib.git"
 bug-reports: "https://github.com/JHU-PL-Lab/jhu-pl-lib/issues"
 build: [ "dune" "build" "-p" name "-j" jobs ]
