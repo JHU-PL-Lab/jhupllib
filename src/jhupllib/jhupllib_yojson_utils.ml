@@ -52,7 +52,7 @@ let map_to_yojson key_to_yojson value_to_yojson enumerator map =
 module type To_yojson_type =
 sig
   type t
-  val to_yojson : t -> json
+  val to_yojson : t -> Yojson.Safe.t
 end;;
 
 module Set_to_yojson(S : Set.S)(Y : To_yojson_type with type t = S.elt) =

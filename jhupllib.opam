@@ -22,5 +22,5 @@ depends: [
   "ounit" {build}
   "ppx_deriving" {>= "2.0"}
   "ppx_deriving_yojson"
-  "yojson"
+  "yojson" {>= "1.7.0"}
 ]
