@@ -75,9 +75,7 @@ struct
     (==)
   ;;
 
-  let compare_witness : int -> int -> int =
-    Pervasives.compare
-  ;;
+  let compare_witness : int -> int -> int = compare;;
 
   module Witness_ord =
   struct
