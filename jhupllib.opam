@@ -1,6 +1,6 @@
 opam-version: "2.0"
 name: "jhupllib"
-version: "0.2.1+dev"
+version: "0.2.2"
 maintainer: "JHU PL Lab <pl.cs@jhu.edu>"
 authors: [ "JHU PL Lab <pl.cs@jhu.edu>" ]
 synopsis: "A collection of OCaml utilities used by the JHU PL lab"
