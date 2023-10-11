@@ -24,9 +24,10 @@ module type Utils = sig
   type 'a m;;
 
   val return : 'a -> 'a m;;
-  val sequence : 'a m Enum.t -> 'a Enum.t m
-  val mapM : ('a -> 'b m) -> 'a Enum.t -> 'b Enum.t m
-  val lift1 : ('a -> 'b) -> 'a m -> 'b m
+  val (>>=) : 'a m -> ('a -> 'b m) -> 'b m;;
+  val sequence : 'a m Enum.t -> 'a Enum.t m;;
+  val mapM : ('a -> 'b m) -> 'a Enum.t -> 'b Enum.t m;;
+  val lift1 : ('a -> 'b) -> 'a m -> 'b m;;
 end;;
 
 module type MonadWithUtils = sig
