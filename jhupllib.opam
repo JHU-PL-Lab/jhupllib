@@ -21,7 +21,6 @@ depends: [
   "base-threads"
   "batteries"
   "dune" {>= "1.0"}
-  "monadlib"
   "ocaml-monadic" {>= "0.4.1"}
   "ounit" {with-test}
   "ppx_deriving" {>= "2.0"}

@@ -6,8 +6,8 @@ open Batteries;;
 
 module type Nondeterminism_monad_sig = sig
   type 'a m
-  include Monad.LazyPlus with type 'a m := 'a m
-  include Jhupllib_monad_utils.Utils with type 'a m := 'a m
+  include Monads.MonadPlus with type 'a m := 'a m
+  include Monads.Utils with type 'a m := 'a m
   val pick_enum : 'a Enum.t -> 'a m
   val enum : 'a m -> 'a Enum.t
 

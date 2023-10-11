@@ -1,6 +1,6 @@
 open Batteries;;
-open Jhupllib_multimap;;
-open Jhupllib_yojson_utils;;
+open Multimap;;
+open Yojson_utils;;
 
 module Make
     (M : Multimap_sig)

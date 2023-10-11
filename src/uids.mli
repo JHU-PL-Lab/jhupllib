@@ -1,6 +1,6 @@
 (** A module defining a generative functor which creates UID modules. *)
 
-open Jhupllib_pp_utils;;
+open Pp_utils;;
 
 (** Defines the type of a module supporting UID generation. *)
 module type Uid_module =

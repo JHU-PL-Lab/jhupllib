@@ -1,6 +1,6 @@
 open Batteries;;
-open Jhupllib_multimap;;
-open Jhupllib_pp_utils;;
+open Multimap;;
+open Pp_utils;;
 
 module Make
     (M : Multimap_sig)

@@ -161,13 +161,13 @@ sig
 
   (** A pretty printer for escorted witnesses (given a pretty printer for their
       values. *)
-  val pp_escorted_witness : escorted_witness Jhupllib_pp_utils.pretty_printer
+  val pp_escorted_witness : escorted_witness Pp_utils.pretty_printer
 end;;
 
 (** A functor to produce a pretty-printing utility module. *)
 module Make_pp
     (R : Escorted_registry)
-    (P : Jhupllib_pp_utils.Pp with type t = R.elt)
+    (P : Pp_utils.Pp with type t = R.elt)
   : Pp_utils with type escorted_witness := R.escorted_witness =
 struct
   let pp_escorted_witness fmt ew =
@@ -190,7 +190,7 @@ end;;
 (** A functor to produce a pretty-printing utility module. *)
 module Make_to_yojson
     (R : Escorted_registry)
-    (Y : Jhupllib_yojson_utils.To_yojson_type with type t = R.elt)
+    (Y : Yojson_utils.To_yojson_type with type t = R.elt)
   : To_yojson_utils with type escorted_witness := R.escorted_witness
 =
 struct
