@@ -22,6 +22,7 @@ module type Utils = sig
   val return : 'a -> 'a m;;
   val sequence : 'a m Enum.t -> 'a Enum.t m
   val mapM : ('a -> 'b m) -> 'a Enum.t -> 'b Enum.t m
+  val lift1 : ('a -> 'b) -> 'a m -> 'b m
 end;;
 
 module type MonadWithUtils = sig
@@ -50,4 +51,5 @@ struct
       return @@ Enum.append (Enum.singleton x) xs
   ;;
   let mapM f xs = sequence (Enum.map f xs);;
+  let lift1 f m = M.bind m @@ fun x -> M.pure @@ f x;;
 end;;
