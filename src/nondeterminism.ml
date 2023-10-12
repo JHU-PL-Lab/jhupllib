@@ -16,7 +16,7 @@ module LazyList = struct
       | Nil -> Nil
       | Cons(x, xs') -> Cons(f x, map f xs')
     in
-    Lazy.map_val mapper xs
+    lazy (mapper (Lazy.force xs))
   let append (xs : 'a t) (ys : 'a t) : 'a t =
     let rec append' (xs : 'a t) (ys : 'a t) : 'a node =
       match Lazy.force xs with
